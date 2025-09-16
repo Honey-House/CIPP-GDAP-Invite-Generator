@@ -1,0 +1,19 @@
+{
+  "name": "cipp-gdap-invite-generator",
+  "version": "1.0.0",
+  "description": "A secure, GDAP invite generator that uses the CIPP API",
+  "main": "src/worker.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev --local"
+  },
+  "author": "Good Heart Tech",
+  "dependencies": {},
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 

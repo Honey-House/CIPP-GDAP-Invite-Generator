@@ -1,0 +1,28 @@
+name = "cipp-gdap-invite-generator"
+main = "src/worker.ts"
+compatibility_date = "2025-08-05"
+compatibility_flags = ["nodejs_compat"]
+
+# DEFINE CUSTOM DOMAIN BELOW
+[[routes]]
+pattern = "gdap.yourdomain.com"
+custom_domain = true
+
+[vars]
+# App Configuration
+APP_NAME = "CIPP GDAP Invite Generator"
+LOGO_URL = "" 
+SUBDOMAIN = "gdap"
+
+
+# CIPP_API_SECRET KEY Configuration (CIPP_API_SECRET should be set as a Cloudflare Worker secret)
+CIPP_API_CLIENT_ID= "
+CIPP_API_URL= ""
+CIPP_TENANT_ID= ""
+CIPP_ROLE_TEMPLATE_LOCK = ""
+
+#theme colors
+THEME_PRIMARY_COLOR="#7189ff"
+
+
+
