@@ -19,22 +19,19 @@ This tool has access to your CIPP API and can generate GDAP invitations. **Never
 
 To use this application, you need to configure API access in your CIPP instance:
 
-1. **Generate API Key Credentials in CIPP**:
-   - Log into your CIPP instance
-   - Generate an API key credential
-   - Store the credentials in a safe place (you'll need them for configuration)
-
-2. **Create CIPP Role with Required Permissions**:
+1. **Create CIPP Role with Required Permissions**:
    - Create a new CIPP role with only these permissions:
      - `CIPP.Core.Read`
      - `Tenant.Relationship.ReadWrite`
 
-3. **Assign Role to API Key**:
-   - Assign the newly created role to your API key
+2. **Generate API Key Credentials in CIPP**:
+   - Log into your CIPP instance
+   - Generate an API key credential and assign the newly created role to your API key
+   - Store the credentials in a safe place (you'll need them for configuration)
 
-4. **Configure Credentials**:
+3. **Configure Credentials**:
    - Input the API credentials into your `wrangler.toml` file
-   - Add the API secret to Cloudflare secrets (as shown in deployment steps above)
+   - Add the API secret to Cloudflare secrets (as shown in deployment steps below)
 
 ## 🛠️ Setup Instructions
 
@@ -66,7 +63,7 @@ To use this application, you need to configure API access in your CIPP instance:
    - Click **Create application**
    - Select **Pages** → **Connect to Git**
    - Connect your GitHub account if not already connected
-   - Select your forked repository: `CIPP-GDAP-Invite-Generator`
+   - Select your new repository: `CIPP-GDAP-Invite-Generator`
 
 ### 3. Configure wrangler.toml
 
@@ -90,9 +87,9 @@ LOGO_URL = "https://your-domain.com/logo.svg"
 SUBDOMAIN = "your-subdomain"
 
 # CIPP API Configuration
-CIPP_API_CLIENT_ID = "your-client-id"
+CIPP_API_CLIENT_ID = "your-client-id-from-cipp"
 CIPP_API_URL = "https://your-cipp-instance.azurewebsites.net"
-CIPP_TENANT_ID = "your-tenant-id"
+CIPP_TENANT_ID = "your-msp-tenant-id"
 
 # Theme Configuration
 THEME_PRIMARY_COLOR = "#7189ff"
@@ -100,7 +97,7 @@ THEME_PRIMARY_COLOR = "#7189ff"
 
 ### 4. Deploy to Cloudflare
 
-1. **Configure deployment settings** in your forked repository:
+1. **Configure deployment settings** in your new repository:
    - Edit the `wrangler.toml` file with your specific configuration (see configuration section above)
    - Commit and push changes to your GitHub repository
 
@@ -119,7 +116,7 @@ THEME_PRIMARY_COLOR = "#7189ff"
      - **Type**: Secret (encrypted)
 
 4. **Verify Zero Trust Protection**:
-   - Access your application URL
+   - Access your application URL in incognito
    - Confirm that Cloudflare Zero Trust authentication is required
    - Test that unauthorized users cannot access the application
 
