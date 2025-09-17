@@ -15,6 +15,27 @@ This tool has access to your CIPP API and can generate GDAP invitations. **Never
 - CIPP instance with API access
 - GitHub account
 
+## 🔐 CIPP API Setup
+
+To use this application, you need to configure API access in your CIPP instance:
+
+1. **Generate API Key Credentials in CIPP**:
+   - Log into your CIPP instance
+   - Generate an API key credential
+   - Store the credentials in a safe place (you'll need them for configuration)
+
+2. **Create CIPP Role with Required Permissions**:
+   - Create a new CIPP role with only these permissions:
+     - `CIPP.Core.Read`
+     - `Tenant.Relationship.ReadWrite`
+
+3. **Assign Role to API Key**:
+   - Assign the newly created role to your API key
+
+4. **Configure Credentials**:
+   - Input the API credentials into your `wrangler.toml` file
+   - Add the API secret to Cloudflare secrets (as shown in deployment steps above)
+
 ## 🛠️ Setup Instructions
 
 ### 1. Set Up Cloudflare Zero Trust Protection
@@ -37,7 +58,7 @@ This tool has access to your CIPP API and can generate GDAP invitations. **Never
    - Set session duration and other security settings
 4. **Save the application** - This MUST be done before deploying the Worker
 
-### 2. Fork Repository and Connect to Cloudflare
+### 2. Copy Repository and Connect to Cloudflare
 
 1. **Copy the contents of this repository** to a new GitHub repo and make it Private.
 2. **Connect GitHub to Cloudflare**:
@@ -110,9 +131,9 @@ THEME_PRIMARY_COLOR = "#7189ff"
 |----------|-------------|---------|
 | `APP_NAME` | Display name for your application | `"CIPP GDAP Generator"` |
 | `LOGO_URL` | URL to your application logo/favicon | `"https://example.com/logo.svg"` |
-| `CIPP_API_CLIENT_ID` | Azure app registration client ID for CIPP API | `"REDACTED-CLIENT-ID"` |
+| `CIPP_API_CLIENT_ID` | Client ID for CIPP API | `"REDACTED-CLIENT-ID"` |
 | `CIPP_API_URL` | Your CIPP instance URL | `"https://cipp.example.com"` |
-| `CIPP_TENANT_ID` | Azure tenant ID for authentication | `"REDACTED-TENANT-ID"` |
+| `CIPP_TENANT_ID` | MSP tenant ID for authentication | `"REDACTED-TENANT-ID"` |
 | `CIPP_ROLE_TEMPLATE_LOCK` | Lock to a specific role template (optional) | `"CIPP Defaults"` |
 | `SUBDOMAIN` | Subdomain for routing (if using custom domains) | `"gdap"` |
 | `THEME_PRIMARY_COLOR` | Primary color for the UI theme | `"#7189ff"` |
@@ -121,7 +142,7 @@ THEME_PRIMARY_COLOR = "#7189ff"
 
 | Secret | Description | How to Obtain |
 |--------|-------------|---------------|
-| `CIPP_API_SECRET` | Azure app registration client secret | Generated in Azure Portal under App Registration → Certificates & secrets |
+| `CIPP_API_SECRET` | CIPP API client secret | Generated in the CIPP API setup section |
 
 ### Optional Variables
 
@@ -129,62 +150,18 @@ THEME_PRIMARY_COLOR = "#7189ff"
 |----------|-------------|---------|
 | `CIPP_ROLE_TEMPLATE_LOCK` | Locks the app to use only a specific role template. When set, users cannot select different templates. Leave empty for normal template selection. | `""` (empty) |
 
-## 🔐 CIPP API Setup
-
-To use this application, you need to configure API access in your CIPP instance:
-
-1. **Generate API Key Credentials in CIPP**:
-   - Log into your CIPP instance
-   - Generate an API key credential
-   - Store the credentials in a safe place (you'll need them for configuration)
-
-2. **Create CIPP Role with Required Permissions**:
-   - Create a new CIPP role with only these permissions:
-     - `CIPP.Core.Read`
-     - `Tenant.Relationship.ReadWrite`
-
-3. **Assign Role to API Key**:
-   - Assign the newly created role to your API key
-
-4. **Configure Credentials**:
-   - Input the API credentials into your `wrangler.toml` file
-   - Add the API secret to Cloudflare secrets (as shown in deployment steps above)
-
-## 🚀 Usage
-
-1. **Access**: Navigate to your Zero Trust protected URL and authenticate
-2. **Select Template**: Choose from available GDAP role templates (or use locked template if configured)
-3. **Review Roles**: Verify the included roles in the selected template
-4. **Generate Invite**: Click "Generate GDAP Invite" to create the relationship
-5. **Copy URL**: Use the "Copy Invite URL" button to share with your customer
-
-## 🎨 Customization
-
-- **Theming**: Modify `THEME_PRIMARY_COLOR` in `wrangler.toml`
-- **Branding**: Update `APP_NAME` and `LOGO_URL` in `wrangler.toml`
-- **Custom Domains**: Configure in the `[[routes]]` section of `wrangler.toml`
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [GPL-3.0 License](LICENSE).
 
-## 👥 Authors
+## 👥 Authors and Support 💖
 
-**Good Heart Tech** - *A nonprofit MSP providing free IT services to other nonprofits on a volunteer basis*
-
-Good Heart Tech is a 501(c)(3) nonprofit organization dedicated to empowering other nonprofits through free technology services. Our team of volunteer IT professionals provides:
-
-- **Managed IT Services**: Complete IT infrastructure management
-- **Cloud Migration**: Secure transitions to cloud-based solutions
-- **Cybersecurity**: Protecting nonprofit data and operations
-- **Training & Support**: Empowering nonprofit staff with technology skills
-- **Custom Solutions**: Tailored applications like this GDAP generator
+**Good Heart Tech** - *A nonprofit 501(c)(3) MSP providing free IT services to other nonprofits on a volunteer basis*
 
 Learn more about our mission and services at [goodhearttech.org](https://goodhearttech.org)
 
-## 💖 Support Our Mission
-
-If this tool has helped your organization, consider supporting Good Heart Tech's mission to provide free IT services to nonprofits worldwide: [https://goodhearttech.org/donate/](https://goodhearttech.org/donate/)
+If this tool has helped your organization, consider supporting Good Heart Tech's mission to help provide free IT services to nonprofits: [https://goodhearttech.org/donate/](https://goodhearttech.org/donate/)
 
 ## 🔗 Related Projects
 
