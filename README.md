@@ -39,7 +39,7 @@ This tool has access to your CIPP API and can generate GDAP invitations. **Never
 
 ### 2. Fork Repository and Connect to Cloudflare
 
-1. **Fork this repository** to your GitHub account and make it Private.
+1. **Copy the contents of this repository** to a new GitHub repo and make it Private.
 2. **Connect GitHub to Cloudflare**:
    - In Cloudflare Dashboard, go to **Workers & Pages**
    - Click **Create application**
