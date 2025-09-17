@@ -16,7 +16,7 @@ SUBDOMAIN = "gdap"
 
 
 # CIPP_API_SECRET KEY Configuration (CIPP_API_SECRET should be set as a Cloudflare Worker secret)
-CIPP_API_CLIENT_ID= "
+CIPP_API_CLIENT_ID= ""
 CIPP_API_URL= ""
 CIPP_TENANT_ID= ""
 CIPP_ROLE_TEMPLATE_LOCK = ""

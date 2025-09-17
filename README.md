@@ -161,10 +161,7 @@ This project is open source and available under the [GPL-3.0 License](LICENSE).
 
 Learn more about our mission and services at [goodhearttech.org](https://goodhearttech.org)
 
-If this tool has helped your organization, consider supporting Good Heart Tech's mission to help provide free IT services to nonprofits: [https://goodhearttech.org/donate/](https://goodhearttech.org/donate/)
-
-## 🔗 Related Projects
-
+## 🔗 Related Projects & Acknowledgments
+A huge thank you to the entire CIPP team for their incredible work and dedication. Your tools have been a game-changer for Good Heart Tech and continue to provide immense value to the entire MSP community. The innovation, thoughtfulness, and support you bring make complex challenges far more manageable, and we’re deeply grateful for the impact you’ve had on our work.
 - [CIPP (CyberDrain Improved Partner Portal)](https://github.com/KelvinTegelaar/CIPP)
 - [CIPP Application](https://cipp.app)
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
