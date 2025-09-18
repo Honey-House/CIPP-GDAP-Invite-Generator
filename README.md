@@ -2,6 +2,9 @@
 
 A simple and secure web-based GDAP (Granular Delegated Admin Privileges) invite generator that integrates with the CIPP (CyberDrain Improved Partner Portal) API.
 
+![CIPP GDAP Invite Generator UI](assets/UI.PNG)
+
+
 ## ⚠️ SECURITY WARNING
 
 **IMPORTANT: This application MUST be protected with Cloudflare Zero Trust before deployment.** 
