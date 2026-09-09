@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A secure, GDAP invite generator that uses the CIPP API",
   "main": "src/worker.ts",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Honey-House-Tech/CIPP-GDAP-Invite-Generator.git"
@@ -20,4 +20,4 @@
   "engines": {
     "node": ">=18.0.0"
   }
-} 
+}
