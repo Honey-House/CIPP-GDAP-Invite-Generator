@@ -130,9 +130,9 @@ THEME_PRIMARY_COLOR = "#7189ff"
 |----------|-------------|---------|
 | `APP_NAME` | Display name for your application | `"CIPP GDAP Generator"` |
 | `LOGO_URL` | URL to your application logo/favicon | `"https://example.com/logo.svg"` |
-| `CIPP_API_CLIENT_ID` | Client ID for CIPP API | `"REDACTED-CLIENT-ID"` |
+| `CIPP_API_CLIENT_ID` | Client ID for CIPP API | `"your-client-id-from-cipp"` |
 | `CIPP_API_URL` | Your CIPP instance URL | `"https://cipp.example.com"` |
-| `CIPP_TENANT_ID` | MSP tenant ID for authentication | `"REDACTED-TENANT-ID"` |
+| `CIPP_TENANT_ID` | MSP tenant ID for authentication | `"your-msp-tenant-id"` |
 | `CIPP_ROLE_TEMPLATE_LOCK` | Lock to a specific role template (optional) | `"CIPP Defaults"` |
 | `SUBDOMAIN` | Subdomain for routing (if using custom domains) | `"gdap"` |
 | `THEME_PRIMARY_COLOR` | Primary color for the UI theme | `"#7189ff"` |
