@@ -8,7 +8,6 @@
     "deploy": "wrangler deploy",
     "preview": "wrangler dev --local"
   },
-  "author": "Good Heart Tech",
   "dependencies": {},
   "devDependencies": {
     "wrangler": "^4.0.0"

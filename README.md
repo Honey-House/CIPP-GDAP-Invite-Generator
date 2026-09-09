@@ -154,13 +154,7 @@ THEME_PRIMARY_COLOR = "#7189ff"
 
 This project is open source and available under the [GPL-3.0 License](LICENSE).
 
-## 👥 Authors and Support 💖
-
-**Good Heart Tech** - *A nonprofit 501(c)(3) MSP providing free IT services to other nonprofits on a volunteer basis*
-
-Learn more about our mission and services at [goodhearttech.org](https://goodhearttech.org)
-
 ## 🔗 Related Projects & Acknowledgments
-A huge thank you to the entire CIPP team for their incredible work and dedication. Your tools have been a game-changer for Good Heart Tech and continue to provide immense value to the entire MSP community. The innovation, thoughtfulness, and support you bring make complex challenges far more manageable, and we’re deeply grateful for the impact you’ve had on our work.
+A huge thank you to the entire CIPP team for their incredible work and dedication. Your tools have been a game-changer and continue to provide immense value to the entire MSP community. The innovation, thoughtfulness, and support you bring make complex challenges far more manageable, and we're deeply grateful for the impact you've had on our work.
 - [CIPP (CyberDrain Improved Partner Portal)](https://github.com/KelvinTegelaar/CIPP)
 - [CIPP Application](https://cipp.app)
