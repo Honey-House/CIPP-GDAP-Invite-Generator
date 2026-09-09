@@ -150,6 +150,14 @@ THEME_PRIMARY_COLOR = "#7189ff"
 | `CIPP_ROLE_TEMPLATE_LOCK` | Locks the app to use only a specific role template. When set, users cannot select different templates. Leave empty for normal template selection. | `""` (empty) |
 
 
+## 🤝 Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Please also review our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## 🔒 Security
+
+Found a vulnerability? Please don't open a public issue — see [SECURITY.md](SECURITY.md) for how to report it.
+
 ## 📄 License
 
 This project is open source and available under the [GPL-3.0 License](LICENSE).
