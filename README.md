@@ -160,7 +160,7 @@ Found a vulnerability? Please don't open a public issue — see [SECURITY.md](SE
 
 ## 📄 License
 
-This project is open source and available under the [GPL-3.0 License](LICENSE).
+This project is open source and available under the [AGPL-3.0 License](LICENSE).
 
 ## 🔗 Related Projects & Acknowledgments
 A huge thank you to the entire CIPP team for their incredible work and dedication. Your tools have been a game-changer and continue to provide immense value to the entire MSP community. The innovation, thoughtfulness, and support you bring make complex challenges far more manageable, and we're deeply grateful for the impact you've had on our work.
