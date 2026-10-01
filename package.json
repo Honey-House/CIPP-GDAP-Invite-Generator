@@ -6,7 +6,7 @@
   "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Honey-House-Tech/CIPP-GDAP-Invite-Generator.git"
+    "url": "git+https://github.com/Honey-House/CIPP-GDAP-Invite-Generator.git"
   },
   "scripts": {
     "dev": "wrangler dev",
