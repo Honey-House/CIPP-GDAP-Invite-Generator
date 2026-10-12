@@ -1,5 +1,7 @@
 # CIPP GDAP Invite Generator
 
+**API policy:** this is a browser tool with no integrator API and no OpenAPI document by design. See [docs/PUBLIC_API.md](docs/PUBLIC_API.md).
+
 A simple and secure web-based GDAP (Granular Delegated Admin Privileges) invite generator that integrates with the CIPP (CyberDrain Improved Partner Portal) API.
 
 ![CIPP GDAP Invite Generator UI](UI.png)
