@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """GHOBS check and sync. Standard library only, one file, easy to read.
 
-  python ghobs.py check [--path DIR] [--warn-only] [--strict]
+  python ghobs.py check [--path DIR] [--site-root DIR] [--warn-only] [--strict]
   python ghobs.py sync --standard-dir DIR [--path DIR] [--init]
 
 Rules live in the standard repo under rules/. Exceptions go in app.yml.
@@ -14,6 +14,8 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
+from xml.etree import ElementTree
 
 BEGIN_RE = re.compile(r"<!-- GHOBS:BEGIN v([\w.\-]+) -->")
 END = "<!-- GHOBS:END -->"
@@ -140,6 +142,8 @@ def check_app_yml(root, app):
         value = app.get(key)
         if value and value not in allowed | WORDS:
             out.append(f("APP-001", "ERROR", "app.yml", 0, f"{key} must be one of {sorted(allowed)}, got '{value}'"))
+    if "website" in app and app["website"] != "public":
+        out.append(f("APP-001", "ERROR", "app.yml", 0, "website must be public or omitted"))
     docs = app.get("docs") if isinstance(app.get("docs"), dict) else {}
     if docs.get("mode") and docs["mode"] not in {"in-repo", "docusaurus-repo"} | WORDS:
         out.append(f("APP-001", "ERROR", "app.yml", 0, "docs.mode must be in-repo or docusaurus-repo"))
@@ -299,7 +303,46 @@ def check_api(files, root, app, standard_versions):
     return out
 
 
-def run_check(root, warn_only=False, strict=False):
+SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+
+
+def check_public_site_output(site_root):
+    """Check explicit local discovery artifacts, not hosting or accessibility."""
+    out = []
+    robots = read_text(site_root / "robots.txt") or ""
+    if not re.search(r"^[ \t]*User-agent:[ \t]*[^\s#]", robots.lstrip("\ufeff"), re.I | re.M):
+        out.append(f("WEB-002", "ERROR", "robots.txt", 0, "expected a public robots.txt with a User-agent directive"))
+
+    try:
+        sitemap = site_root / "sitemap.xml"
+        # The standard uncompressed limit is 50 MB.
+        if sitemap.stat().st_size > 52_428_800:
+            raise ValueError("sitemap exceeds 50 MB")
+        root = ElementTree.parse(sitemap).getroot()
+        kinds = {SITEMAP_NS + "urlset": "url", SITEMAP_NS + "sitemapindex": "sitemap"}
+        entry = kinds.get(root.tag)
+        if not entry:
+            raise ValueError("expected a sitemap urlset or sitemapindex")
+        entries = root.findall(SITEMAP_NS + entry)
+        if not entries:
+            raise ValueError("sitemap has no entries")
+        for item in entries:
+            loc = (item.findtext(SITEMAP_NS + "loc") or "").strip()
+            url = urlsplit(loc)
+            if url.scheme not in {"https", "http"} or not url.hostname or any(c.isspace() for c in loc):
+                raise ValueError("each sitemap entry needs an absolute HTTP(S) loc")
+    except (OSError, ElementTree.ParseError, ValueError) as err:
+        reason = str(err) if isinstance(err, ValueError) else "missing or invalid XML"
+        out.append(f("WEB-002", "ERROR", "sitemap.xml", 0, reason))
+
+    llms = read_text(site_root / "llms.txt") or ""
+    heading = next((line for line in llms.lstrip("\ufeff").splitlines() if line.strip()), "")
+    if not re.match(r"^#[ \t]+\S", heading):
+        out.append(f("WEB-003", "ERROR", "llms.txt", 0, "expected a public llms.txt starting with a Markdown H1"))
+    return out
+
+
+def run_check(root, warn_only=False, strict=False, site_root=None):
     root = Path(root).resolve()
     app_path = root / "app.yml"
     app = parse_yaml(app_path.read_text(encoding="utf-8")) if app_path.exists() else None
@@ -309,6 +352,8 @@ def run_check(root, warn_only=False, strict=False):
     code = [p for p in files if p.suffix.lower() in CODE_EXT]
 
     findings = check_app_yml(root, app) + check_ai_files(root)
+    if app and app.get("website") == "public" and site_root is not None:
+        findings += check_public_site_output(root / site_root)
     findings += scan_lines(code, root, CODE_EXT, FA_CDN, "UI-002", "ERROR", "Font Awesome loaded from a CDN; self-host only the icons used")
     findings += scan_lines(files, root, CODE_EXT | {".json", ".yml", ".yaml", ".py"}, NEG_TOGGLE, "UI-001", "WARN", "setting named as a negative (disable_/hide_); name it positively, on means enabled")
     own = tuple(d.strip().lower() for d in (app or {}).get("own_domains", "").split(",") if d.strip())
@@ -390,6 +435,7 @@ def main(argv=None):
     sub = parser.add_subparsers(dest="cmd", required=True)
     chk = sub.add_parser("check")
     chk.add_argument("--path", default=".")
+    chk.add_argument("--site-root", type=Path, help="local rendered output directory for a website: public app")
     chk.add_argument("--warn-only", action="store_true", help="report but never fail (advisory rollout)")
     chk.add_argument("--strict", action="store_true", help="treat warnings as failures")
     syn = sub.add_parser("sync")
@@ -398,7 +444,7 @@ def main(argv=None):
     syn.add_argument("--init", action="store_true", help="also create app.yml if missing")
     args = parser.parse_args(argv)
     if args.cmd == "check":
-        return run_check(args.path, args.warn_only, args.strict)
+        return run_check(args.path, args.warn_only, args.strict, args.site_root)
     return run_sync(args.path, args.standard_dir, args.init)
 
 

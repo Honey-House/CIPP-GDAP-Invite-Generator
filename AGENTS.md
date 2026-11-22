@@ -6,7 +6,7 @@
 - Run `python .ghobs/ghobs.py check` and `node --test tests/browser-policy.test.mjs` before publishing a change.
 - This browser-only Worker assumes Cloudflare Access at the edge. Do not expose new interfaces, remove the existing gate, or use real tenant data in tests. See [public API policy](docs/PUBLIC_API.md).
 
-<!-- GHOBS:BEGIN v0.1.10 -->
+<!-- GHOBS:BEGIN v0.1.11 -->
 ## Good Heart Open Build Standard (GHOBS)
 
 This repo follows GHOBS `ghobs/v1`. Full rules: https://github.com/Good-Heart-Tech/Good-Heart-Open-Build-Standard (rules/ folder, one short file per rule). A repo-specific note outside this block wins over this block, and a recorded exception in app.yml wins over a rule.
@@ -32,4 +32,6 @@ Always:
 - Work must be resumable across AI tools. Use the linked project tracker and handoff, not private chats. Before pausing unfinished work, save it to an approved shared location and record the ref, progress, blockers, test results and next step (AI-002).
 - Keep docs current in the same change as the code, in `docs/` or the docs repo named in `app.yml`.
 - When you notice the same code or style in a second repo, say so and suggest consolidating. Do not extract it without asking.
+
+For sites meant for public discovery, set optional `website: public` and follow WEB-001 through WEB-004. Ship a reviewed sitemap, robots.txt and llms.txt with only approved public discovery URLs. Keep private and intentionally unindexed routes out; check accessibility even for unindexed public-facing pages. Run the public website review checklist; a local check is not proof of indexing or accessibility.
 <!-- GHOBS:END -->

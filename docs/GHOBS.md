@@ -1,10 +1,12 @@
 # Good Heart Open Build Standard
 
-This repository declares GHOBS v1 with checker 0.1.10. The adoption change is documentation, tooling, and offline tests only; it does not alter Worker routes, its authentication boundary, Microsoft permissions, or its deployment configuration.
+This repository declares GHOBS v1 with checker 0.1.11. The adoption change is documentation, tooling, and offline tests only; it does not alter Worker routes, its authentication boundary, Microsoft permissions, or its deployment configuration.
 
 ## Scope
 
 This is the publicly distributed Honey House source; deployed instances are for explicitly authorized staff. Public distribution does not make any installation public. This is a browser-only Cloudflare Worker. The two same-origin JSON routes are UI transport, not a supported integration API (see [API policy](PUBLIC_API.md)). Do not add public Swagger, OpenAPI, or MCP routes. Continue protecting the entire deployment with Cloudflare Access. Do not test a live invitation action as part of a documentation rollout.
+
+Public source distribution is not a public discovery website. Omit the optional `website: public` profile and do not publish sitemap, robots, or llms discovery files for protected installations. Revisit website discovery and accessibility only if an approved public site is established; ordinary browser-tool accessibility still matters.
 
 ## Validate and update
 
