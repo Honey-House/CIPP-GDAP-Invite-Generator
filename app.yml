@@ -1,0 +1,17 @@
+standard: ghobs/v1
+name: CIPP GDAP Invite Generator
+description: Staff browser tool for approved CIPP relationship invitations.
+audience: public
+organization: Honey House
+brand_kit: default
+platform: worker
+ui: responsive
+api: false
+mcp: false
+docs:
+  mode: in-repo
+  repo: ""
+own_domains: ""
+exceptions:
+  CHK-001: "Run the vendored checker locally before publishing; no new GitHub Actions for this rollout."
+  UPD-001: "Review upstream releases and sync manually; do not enable a scheduled Actions workflow."

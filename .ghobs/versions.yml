@@ -1,0 +1,41 @@
+# Reference versions. target = latest stable. minimum = oldest still accepted ("" = not enforced).
+# The monthly upstream-watch workflow raises targets and opens a PR. Raise a minimum by hand.
+# For openapi and swagger-ui the minimum is the latest minor line (API-002): below it fails the
+# check, behind the target only warns.
+items:
+  openapi:
+    source: github:OAI/OpenAPI-Specification
+    target: "3.2.1"
+    minimum: "3.2.0"
+  swagger-ui:
+    source: npm:swagger-ui-dist
+    target: "5.33.1"
+    minimum: "5.33.0"
+  fontawesome-free:
+    source: npm:@fortawesome/fontawesome-free
+    target: "7.3.1"
+    minimum: ""
+  fastapi:
+    source: pypi:fastapi
+    target: "0.143.0"
+    minimum: ""
+  fastmcp:
+    source: pypi:fastmcp
+    target: "4.1.0"
+    minimum: ""
+  hono:
+    source: npm:hono
+    target: "4.13.13"
+    minimum: ""
+  docusaurus:
+    source: npm:@docusaurus/core
+    target: "3.10.2"
+    minimum: ""
+  node-lts:
+    source: nodelts
+    target: "24.21.0"
+    minimum: ""
+  python:
+    source: endoflife:python
+    target: ""
+    minimum: ""

@@ -1,0 +1,32 @@
+---
+description: Good Heart Open Build Standard
+alwaysApply: true
+---
+
+<!-- GHOBS:BEGIN v0.1.10 -->
+## Good Heart Open Build Standard (GHOBS)
+
+This repo follows GHOBS `ghobs/v1`. Full rules: https://github.com/Good-Heart-Tech/Good-Heart-Open-Build-Standard (rules/ folder, one short file per rule). A repo-specific note outside this block wins over this block, and a recorded exception in app.yml wins over a rule.
+
+Start here:
+- Read `app.yml` first. It names the platform, UI profile, docs mode, brand kit and organization.
+- If `app.yml` has `unanswered` values, ask the onboarding questions (rules/DOC-002.md) one at a time, offer a default, and accept "skip". Ask again about a gap at most once.
+- Run `python .ghobs/ghobs.py check` before you finish.
+
+Always:
+- API first for shared UI/API workflows and integrations or automation. Use FastAPI for Python or Hono or Express for TypeScript. If the app exposes a REST API, serve `/healthz`, `/api/openapi.json` (latest stable OpenAPI) and `/api/docs` (latest stable Swagger UI, self-hosted).
+- Keep business rules shared. Require equivalent UI and API outcomes where both exist, and include MCP wherever a tool exposes the workflow. Keep the inventory, exceptions and focused tests current (API-003).
+- MCP is optional. Prefer a scoped API token and an external gateway for the usual internal setup. Set `mcp: false` for gateway-only apps. Use FastMCP (Python) or the official MCP SDK (TypeScript) when the app hosts MCP (MCP-001).
+- Keep the back end simple and the code easy for a future volunteer or AI to update. Minimal abstractions. Match the code around you.
+- Follow the brand kit named in `app.yml` (`default` means the kit of the organization that owns this repo) and the guidelines of the organization it names.
+- Settings toggles: on means the setting is on. Never a toggle that disables something when enabled. Name booleans positively (`alerts_enabled`).
+- Font Awesome icons are self-hosted, only the icons used. No CDN.
+- Tables sort, filter, have a column chooser with defaults, and export CSV (visible or all columns). Statuses are pills with an icon and text. Notifications are stacking toasts. Use the shared colors in rules/UI-006.md.
+- Errors: request ID on every request, problem details (RFC 9457) from the API, a friendly UI message with a copy-for-AI button, and a clear ERROR line with the request ID in the container log. Never leak secrets.
+- Docker apps: persistent data lives under `/data`, and the data volume is mounted at `/data` by default.
+- Placeholder values are fictional or satirical only. No real people or organizations.
+- Never commit secrets, databases or client data.
+- Work must be resumable across AI tools. Use the linked project tracker and handoff, not private chats. Before pausing unfinished work, save it to an approved shared location and record the ref, progress, blockers, test results and next step (AI-002).
+- Keep docs current in the same change as the code, in `docs/` or the docs repo named in `app.yml`.
+- When you notice the same code or style in a second repo, say so and suggest consolidating. Do not extract it without asking.
+<!-- GHOBS:END -->
