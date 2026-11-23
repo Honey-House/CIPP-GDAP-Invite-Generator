@@ -1,6 +1,6 @@
 # Good Heart Open Build Standard
 
-This repository declares GHOBS v1 with checker 0.1.11. The adoption change is documentation, tooling, and offline tests only; it does not alter Worker routes, its authentication boundary, Microsoft permissions, or its deployment configuration.
+This repository declares GHOBS v1 with checker 0.1.12. The adoption change is documentation, tooling, and offline tests only; it does not alter Worker routes, its authentication boundary, Microsoft permissions, or its deployment configuration.
 
 ## Scope
 
@@ -15,6 +15,8 @@ Public source distribution is not a public discovery website. Omit the optional 
 3. Review the Worker authentication, authorization, client-side logging, accessibility, and operational deployment independently before a runtime release. The structural checker and offline tests do not certify production controls.
 
 ## Handoff
+
+[GitHub Issues](https://github.com/Honey-House/CIPP-GDAP-Invite-Generator/issues) is canonical; issue numbers are the stable IDs. The tracker audit found no open or closed human issues to move or migrate. There was no live issue to sample for field-level verification. Check a real item when one exists, and do not create a placeholder item solely to pass the manual review.
 
 Use the active issue as the task record. Include owner/availability, starting and current commit, completed changes, verification results, open items, and the next concrete step. Never include tokens, real tenant data, or customer payloads. Verify a deployment separately in the Cloudflare dashboard against the expected revision and use an approved non-mutating verification path.
 

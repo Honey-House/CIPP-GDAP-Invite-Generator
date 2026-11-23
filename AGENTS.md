@@ -2,11 +2,13 @@
 
 ## Repository work
 
-- Use [GitHub Issues](https://github.com/Honey-House/CIPP-GDAP-Invite-Generator/issues) for work and [the GHOBS handoff](docs/GHOBS.md#handoff) to resume it. Record the shared branch and commit, owner, tests run, and concrete next step on the active issue.
+- [GitHub Issues](https://github.com/Honey-House/CIPP-GDAP-Invite-Generator/issues) is the authoritative tracker. Continue work on the same issue by its repository-qualified number; do not renumber or keep a competing queue. This tracker is public: keep protected operational and security details in authorized private reporting, not in a public issue.
+- On each issue record state (planned, in progress, blocked, in review, or complete), owner or unassigned, priority and acceptance criteria. Assign an owner before work starts. Record blockers and next steps. Add verification evidence and its limits before closing, or record cancellation or supersession.
+- Use the [GHOBS handoff](docs/GHOBS.md#handoff) to resume work. Keep the ref, checks, status and next step on the active issue or approved linked draft PR.
 - Run `python .ghobs/ghobs.py check` and `node --test tests/browser-policy.test.mjs` before publishing a change.
 - This browser-only Worker assumes Cloudflare Access at the edge. Do not expose new interfaces, remove the existing gate, or use real tenant data in tests. See [public API policy](docs/PUBLIC_API.md).
 
-<!-- GHOBS:BEGIN v0.1.11 -->
+<!-- GHOBS:BEGIN v0.1.12 -->
 ## Good Heart Open Build Standard (GHOBS)
 
 This repo follows GHOBS `ghobs/v1`. Full rules: https://github.com/Good-Heart-Tech/Good-Heart-Open-Build-Standard (rules/ folder, one short file per rule). A repo-specific note outside this block wins over this block, and a recorded exception in app.yml wins over a rule.
@@ -29,7 +31,7 @@ Always:
 - Docker apps: persistent data lives under `/data`, and the data volume is mounted at `/data` by default.
 - Placeholder values are fictional or satirical only. No real people or organizations.
 - Never commit secrets, databases or client data.
-- Work must be resumable across AI tools. Use the linked project tracker and handoff, not private chats. Before pausing unfinished work, save it to an approved shared location and record the ref, progress, blockers, test results and next step (AI-002).
+- Work must be resumable across AI tools. Link one canonical tracker from `AGENTS.md`; update the same item by stable ID with state, owner, priority, acceptance and completion evidence (WORK-001). Use that item and its handoff, not private chats. Before pausing unfinished work, save it to an approved shared location and record the ref, progress, blockers, test results and next step (AI-002).
 - Keep docs current in the same change as the code, in `docs/` or the docs repo named in `app.yml`.
 - When you notice the same code or style in a second repo, say so and suggest consolidating. Do not extract it without asking.
 
